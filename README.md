@@ -3,34 +3,31 @@
 Install it with yarn:
 
 ```
-yarn add use-throttled-effect --save
+yarn add use-debounced-effect --save
 ```
 
 Or with npm:
 
 ```
-npm i use-throttled-effect --save
+npm i use-debounced-effect --save
 ```
 
 #Example
+
 ```javascript
 import React, { useState } from 'react';
-import useThrottledEffect  from 'use-throttled-effect';
+import useDebouncedEffect  from 'use-debounced-effect';
 
 export default function Input() {
-  const [count, setCount] = useState(0);
+  const [term, setTerm] = useState('');
 
-  useEffect(()=>{
-    const interval = setInterval(() => setCount(count=>count+1) ,100);
-    return ()=>clearInterval(interval);
-  },[])
-  
-  useThrottledEffect(()=>{
-    console.log(count);     
-  }, 1000 ,[count]);
+  useDebouncedEffect(()=>{
+    console.log(term); // debounced 1sec
+    // call search api ...
+  }, 1000 ,[term]);
   
   return (
-    {count}
+    <input onChange={(e)=>setTerm(e.target.value)} />
   );
 }
 ```
