@@ -15,7 +15,7 @@ export function useDebouncedEffect(callback, delay, deps = []) {
         clearTimeout(handler);
       };
     },
-    [callback, delay, ...deps],
+    [delay, ...deps],
   );
 }
 
