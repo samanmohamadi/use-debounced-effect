@@ -1,20 +1,26 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 export function useDebouncedEffect(callback, delay, deps = []) {
-  const firstUpdate = useRef(true);
+  const data = useRef({ firstTime : true });
   useEffect(() => {
-      if (firstUpdate.current) {
-        firstUpdate.current = false;
-        return;
-      }
-      const handler = setTimeout(() => {
-        callback();
-      }, delay);
+    const { firstTime, clearFunc } = data.current;
 
-      return () => {
-        clearTimeout(handler);
-      };
-    },
+    if (firstTime) {
+      data.current.firstTime = false;
+      return;
+    }
+
+    const handler = setTimeout(() => {
+      if (clearFunc && typeof clearFunc === 'function') {
+        clearFunc();
+      }
+      data.current.clearFunc = callback();
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  },
     [delay, ...deps],
   );
 }
