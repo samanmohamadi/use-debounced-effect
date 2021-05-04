@@ -1,6 +1,6 @@
 {
   "name": "use-debounced-effect",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Debounced effect hook for react",
   "main": "lib/index.js",
   "scripts": {
