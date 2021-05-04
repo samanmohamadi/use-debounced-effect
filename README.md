@@ -3,7 +3,7 @@
 Install it with yarn:
 
 ```
-yarn add use-debounced-effect --save
+yarn add use-debounced-effect
 ```
 
 Or with npm:
@@ -24,6 +24,8 @@ export default function Input() {
   useDebouncedEffect(()=>{
     console.log(term); // debounced 1sec
     // call search api ...
+
+    // return () => maybe cancel prev req 
   }, 1000 ,[term]);
   
   return (
