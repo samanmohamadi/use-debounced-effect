@@ -2,8 +2,11 @@ declare module 'use-debounced-effect' {
   import * as React from 'react';
 
   function useDebouncedEffect(
-    effectFn: () => void,
-    timeout: number,
+    callback: () => void | Function,
+    config: number | {
+      timeout?: number
+      ignoreInitialCall?: boolean
+    },
     dependencies: any[],
   ): void;
 

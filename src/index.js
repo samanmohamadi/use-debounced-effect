@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 const DEFAULT_CONFIG = {
-  delay: 0,
+  timeout: 0,
   ignoreInitialCall: true,
 };
 export function useDebouncedEffect(callback, config, deps = []) {
@@ -14,10 +14,10 @@ export function useDebouncedEffect(callback, config, deps = []) {
   } else {
     currentConfig = {
       ...DEFAULT_CONFIG,
-      delay: config,
+      timeout: config,
     };
   }
-  const { delay, ignoreInitialCall } = currentConfig;
+  const { timeout, ignoreInitialCall } = currentConfig;
   const data = useRef({ firstTime: true });
   useEffect(() => {
     const { firstTime, clearFunc } = data.current;
@@ -32,12 +32,12 @@ export function useDebouncedEffect(callback, config, deps = []) {
         clearFunc();
       }
       data.current.clearFunc = callback();
-    }, delay);
+    }, timeout);
 
     return () => {
       clearTimeout(handler);
     };
-  }, [delay, ...deps]);
+  }, [timeout, ...deps]);
 }
 
 export default useDebouncedEffect;

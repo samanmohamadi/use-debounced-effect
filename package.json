@@ -3,6 +3,7 @@
   "version": "1.2.0",
   "description": "Debounced effect hook for react",
   "main": "lib/index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "build": "babel ./src --out-dir ./lib"
   },
