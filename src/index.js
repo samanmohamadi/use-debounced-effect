@@ -1,11 +1,28 @@
 import { useEffect, useRef } from 'react';
 
-export function useDebouncedEffect(callback, delay, deps = []) {
-  const data = useRef({ firstTime : true });
+const DEFAULT_CONFIG = {
+  delay: 0,
+  ignoreInitialCall: true,
+};
+export function useDebouncedEffect(callback, config, deps = []) {
+  let currentConfig;
+  if (typeof config === 'object') {
+    currentConfig = {
+      ...DEFAULT_CONFIG,
+      ...config,
+    };
+  } else {
+    currentConfig = {
+      ...DEFAULT_CONFIG,
+      delay: config,
+    };
+  }
+  const { delay, ignoreInitialCall } = currentConfig;
+  const data = useRef({ firstTime: true });
   useEffect(() => {
     const { firstTime, clearFunc } = data.current;
 
-    if (firstTime) {
+    if (firstTime && ignoreInitialCall) {
       data.current.firstTime = false;
       return;
     }
@@ -20,9 +37,7 @@ export function useDebouncedEffect(callback, delay, deps = []) {
     return () => {
       clearTimeout(handler);
     };
-  },
-    [delay, ...deps],
-  );
+  }, [delay, ...deps]);
 }
 
 export default useDebouncedEffect;
