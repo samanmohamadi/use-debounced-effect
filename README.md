@@ -13,7 +13,7 @@ Or with npm:
 npm i use-debounced-effect --save
 ```
 
-#Shorthand
+## Shorthand
 `useDebouncedEffect(callback, delay, dependencies)`
 
 ```javascript
@@ -40,17 +40,17 @@ export  default  function  Input() {
 
 
 
-#Advanced
+## Advanced
 `useDebouncedEffect(callback, config, dependencies)`
 
-##config
+### Config
   
 |Name  |type| Description |Default/Fallback|
 |--|--|--|--|
 |delay  |number| debounce delay |0|
 |ignoreInitialCall|boolean| ignore first effect call | true
 
-##example
+### Example
 ```javascript
 
 	useDebouncedEffect(()=>{
