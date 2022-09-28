@@ -47,7 +47,7 @@ export  default  function  Input() {
   
 |Name  |type| Description |Default/Fallback|
 |--|--|--|--|
-|delay  |number| debounce delay |0|
+|timeout  |number| debounce delay |0|
 |ignoreInitialCall|boolean| ignore first effect call | true
 
 ### Example
@@ -59,7 +59,7 @@ export  default  function  Input() {
 		// return () => maybe cancel prev req
 	}, 
 	{ 
-		delay: 1000,
+		timeout: 1000,
 		ignoreInitialCall: false
 	}
 	,[term]);
